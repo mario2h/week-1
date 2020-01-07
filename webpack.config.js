@@ -6,5 +6,16 @@ module.exports = {
     path: path.join(__dirname, 'dist/'),
     publicPath: '/',
     filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
+  module: {
+    rules: [{
+      test: /\.tsx?$/,
+      use: {
+        loader: 'ts-loader'
+      }
+    }]
   }
 }
