@@ -6,10 +6,10 @@ export default class Details extends React.Component<IDetailsProps, IDetailsStat
     super(props);
     console.log(props)
     this.state = {
-      post: this.props.match
+      post: props,
     }
   }
-  
+
   render() {
     const { post } = this.state;
     return (
@@ -20,7 +20,7 @@ export default class Details extends React.Component<IDetailsProps, IDetailsStat
   }
 }
 
-interface IDetailsProps extends RouteComponentProps<{ post: any }>{
+interface IDetailsProps extends RouteComponentProps<{ id: any }>{
 
 }
 

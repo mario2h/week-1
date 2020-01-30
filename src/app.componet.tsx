@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { AppContext } from './app.context';
 import List from './list.component';
 import Details from './details.component';
 
@@ -8,7 +9,7 @@ class App extends React.Component<IAppProps, IAppState>  {
     super(props)
     this.state = {posts: []};
   }
-  
+
   async componentDidMount() {
     try {
 			const listPost = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -21,15 +22,16 @@ class App extends React.Component<IAppProps, IAppState>  {
   }
 
   render () {
+    const { posts } = this.state;
     return (
-        <div className="container">
+        <AppContext.Provider value={{ posts }}>
           <Router>
             <Switch>
               <Route exact path="/" component={List}/>
               <Route path="/:id" component={Details}/>
             </Switch>
           </Router>
-        </div>
+        </AppContext.Provider>
       )
   }
 }
